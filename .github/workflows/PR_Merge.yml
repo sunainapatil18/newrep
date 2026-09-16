@@ -1,0 +1,14 @@
+name: Run only after merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches: ENV/**
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "This PR was merged"
